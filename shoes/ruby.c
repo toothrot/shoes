@@ -4639,6 +4639,8 @@ shoes_ruby_init()
   rb_define_alloc_func(cApp, shoes_app_alloc);
   rb_define_method(cApp, "fullscreen", CASTHOOK(shoes_app_get_fullscreen), 0);
   rb_define_method(cApp, "fullscreen=", CASTHOOK(shoes_app_set_fullscreen), 1);
+  rb_define_method(cApp, "always_on_top", CASTHOOK(shoes_app_get_always_on_top), 0);
+  rb_define_method(cApp, "always_on_top=", CASTHOOK(shoes_app_set_always_on_top), 1);
   rb_define_method(cApp, "name", CASTHOOK(shoes_app_get_title), 0);
   rb_define_method(cApp, "name=", CASTHOOK(shoes_app_set_title), 1);
   rb_define_method(cApp, "location", CASTHOOK(shoes_app_location), 0);

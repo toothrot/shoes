@@ -99,6 +99,8 @@
 #define VK_F11   103
 #define VK_F12   111
 
+#define SHOES_ALWAYS_ON_TOP_LEVEL 1001
+
 #define KEY_SYM(name, sym) \
   if (key == VK_##name) \
     v = ID2SYM(rb_intern("" # sym)); \

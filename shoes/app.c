@@ -56,6 +56,7 @@ shoes_app_alloc(VALUE klass)
   app->minwidth = 0;
   app->minheight = 0;
   app->fullscreen = FALSE;
+  app->always_on_top = FALSE;
   app->resizable = TRUE;
   app->cursor = s_arrow;
   app->scratch = cairo_create(cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1));
@@ -133,6 +134,7 @@ shoes_app_window(int argc, VALUE *argv, VALUE self, VALUE owner)
   app_t->owner = owner;
   app_t->title = ATTR(attr, title);
   app_t->fullscreen = RTEST(ATTR(attr, fullscreen));
+  app_t->always_on_top = RTEST(ATTR(attr, always_on_top));
   app_t->resizable = (ATTR(attr, resizable) != Qfalse);
   app_t->hidden = (ATTR(attr, hidden) == Qtrue);
   shoes_app_resize(app_t, ATTR2(int, attr, width, SHOES_APP_WIDTH), ATTR2(int, attr, height, SHOES_APP_HEIGHT));
@@ -206,6 +208,23 @@ shoes_app_set_fullscreen(VALUE app, VALUE yn)
   shoes_app *app_t;
   Data_Get_Struct(app, shoes_app, app_t);
   shoes_native_app_fullscreen(app_t, app_t->fullscreen = RTEST(yn));
+  return yn;
+}
+
+VALUE
+shoes_app_get_always_on_top(VALUE app)
+{
+  shoes_app *app_t;
+  Data_Get_Struct(app, shoes_app, app_t);
+  return app_t->always_on_top ? Qtrue : Qfalse;
+}
+
+VALUE
+shoes_app_set_always_on_top(VALUE app, VALUE yn)
+{
+  shoes_app *app_t;
+  Data_Get_Struct(app, shoes_app, app_t);
+  shoes_native_app_always_on_top(app_t, app_t->always_on_top = RTEST(yn));
   return yn;
 }
 

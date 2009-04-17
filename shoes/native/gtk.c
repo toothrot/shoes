@@ -534,6 +534,12 @@ shoes_native_app_fullscreen(shoes_app *app, char yn)
     gtk_window_unfullscreen(GTK_WINDOW(app->os.window));
 }
 
+void
+shoes_native_app_always_on_top(shoes_app *app, char yn) {
+  // TODO
+}
+
+
 shoes_code
 shoes_native_app_open(shoes_app *app, char *path, int dialog)
 {

@@ -854,6 +854,9 @@ shoes_native_app_window(shoes_app *app, int dialog)
   }
   window = [[ShoesWindow alloc] initWithContentRect: rect
     styleMask: mask backing: NSBackingStoreBuffered defer: NO];
+  if (app->always_on_top) {
+    [window setLevel:SHOES_ALWAYS_ON_TOP_LEVEL];
+  }
   if (app->minwidth > 0 || app->minheight > 0)
     [window setContentMinSize: size];
   [window prepareWithApp: app->self];
@@ -906,6 +909,23 @@ shoes_native_app_fullscreen(shoes_app *app, char yn)
       [old disconnectApp];
       [old close];
       [app->os.window setFrame: app->os.normal display: YES];
+    });
+  }
+}
+
+void
+shoes_native_app_always_on_top(shoes_app *app, char yn)
+{
+  if (yn)
+  {
+    COCOA_DO({
+      [app->os.window setLevel:SHOES_ALWAYS_ON_TOP_LEVEL];
+    });
+  }
+  else
+  {
+    COCOA_DO({
+      [app->os.window setLevel:NSNormalWindowLevel];
     });
   }
 }
