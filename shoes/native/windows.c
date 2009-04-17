@@ -910,7 +910,25 @@ shoes_native_app_fullscreen(shoes_app *app, char yn)
 void
 shoes_native_app_always_on_top(shoes_app *app, char yn)
 {
-  // TODO
+  if (yn) {
+    SetWindowPos(app->slot->window,
+      HWND_TOPMOST,
+      app->os.normal.left,
+      app->os.normal.top,
+      app->os.normal.right - app->os.normal.left,
+      app->os.normal.bottom - app->os.normal.top,
+    )
+  }
+  else
+  {
+    SetWindowPos(app->slot->window,
+      HWND_NOTOPMOST,
+      app->os.normal.left,
+      app->os.normal.top,
+      app->os.normal.right - app->os.normal.left,
+      app->os.normal.bottom - app->os.normal.top,
+    )
+  }
 }
 
 shoes_code

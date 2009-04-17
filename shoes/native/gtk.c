@@ -536,7 +536,7 @@ shoes_native_app_fullscreen(shoes_app *app, char yn)
 
 void
 shoes_native_app_always_on_top(shoes_app *app, char yn) {
-  // TODO
+  gtk_window_set_keep_above(GTK_WINDOW(app->os.window), (gboolean)yn);
 }
 
 
