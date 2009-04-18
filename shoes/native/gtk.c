@@ -562,6 +562,8 @@ shoes_native_app_open(shoes_app *app, char *path, int dialog)
     gtk_window_set_resizable(GTK_WINDOW(gk->window), FALSE);
   if (app->fullscreen)
     shoes_native_app_fullscreen(app, 1);
+  if (app->always_on_top)
+    shoes_native_app_always_on_top(app, 1);
   gtk_widget_set_events(gk->window, GDK_POINTER_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
   g_signal_connect(G_OBJECT(gk->window), "size-allocate",
                    G_CALLBACK(shoes_app_gtk_paint), app);
